@@ -1,0 +1,26 @@
+{
+  "name": "next-emitter",
+  "version": "1.0.0",
+  "description": "Many implementations of event emitter for JavaScript with performance comparison",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gartz/next-emitter.git"
+  },
+  "keywords": [
+    "event",
+    "eventemitter",
+    "emitter",
+    "performance",
+    "perf"
+  ],
+  "author": "Gabriel Reitz Giannattasio <g@gartz.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gartz/next-emitter/issues"
+  },
+  "homepage": "https://github.com/gartz/next-emitter#readme"
+}
