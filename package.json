@@ -2,8 +2,10 @@
   "name": "next-emitter",
   "version": "1.0.0",
   "description": "Many implementations of event emitter for JavaScript with performance comparison",
-  "main": "index.js",
+  "main": "src/index.js",
+  "type": "module",
   "scripts": {
+    "start": "node --experimental-modules --es-module-specifier-resolution=node ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

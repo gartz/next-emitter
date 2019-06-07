@@ -1,8 +1,7 @@
 const EVENTS = Symbol('EVENTS');
 
-export default class EventEmitter {
-    static EVENTS = EVENTS;
 
+export class EventEmitter {
     constructor() {
         this[EVENTS] = new Map();
     }
@@ -34,3 +33,7 @@ export default class EventEmitter {
         }
     }
 }
+
+EventEmitter.EVENTS = EVENTS;
+
+export default EventEmitter;
