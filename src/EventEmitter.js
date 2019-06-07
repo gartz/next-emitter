@@ -1,5 +1,11 @@
-const EVENTS = Symbol('EVENTS');
+// Compatible with class extends
+// Example:
+//
+// class Foo extends EventEmitter {
+//     constructor() { super(); }
+// };
 
+const EVENTS = Symbol('EVENTS');
 
 export class EventEmitter {
     constructor() {
