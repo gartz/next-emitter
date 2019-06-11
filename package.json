@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node --experimental-modules --es-module-specifier-resolution=node ./src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --experimental-modules --es-module-specifier-resolution=node ./src/index.test.js"
   },
   "repository": {
     "type": "git",
@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/gartz/next-emitter/issues"
   },
-  "homepage": "https://github.com/gartz/next-emitter#readme"
+  "homepage": "https://github.com/gartz/next-emitter#readme",
+  "devDependencies": {
+    "tap": "^14.2.2"
+  }
 }
