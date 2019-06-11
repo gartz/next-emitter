@@ -1,9 +1,11 @@
-import oo from './EventEmitter';
-import singleton from './PrototypeEventEmitter';
-import BindEventEmitter from './BindEventEmitter';
+import EventEmitter from './EventEmitter';
+import PrototypeEventEmitter from './PrototypeEventEmitter';
+import CopyEventEmitter from './CopyEventEmitter';
+import WeakEventEmitter from './WeakEventEmitter';
 
-export oo;
-export singleton;
-export BindEventEmitter;
+export EventEmitter;
+export PrototypeEventEmitter;
+export CopyEventEmitter;
+export WeakEventEmitter;
 
-export default oo;
+export default EventEmitterEventEmitter;

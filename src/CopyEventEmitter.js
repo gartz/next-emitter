@@ -1,7 +1,7 @@
 // Functional with context binding implementation, in this way unsubscribe is the return of subscribe and once methods.
 // Example:
 //
-// BindEventEmitter({});
+// CopyEventEmitter({});
 
 const EVENTS = Symbol();
 
@@ -31,14 +31,14 @@ function emit(name, ...args) {
     }
 }
 
-function BindEventEmitter(object) {
+function CopyEventEmitter(object) {
     object[EVENTS] = new Map();
-    object.subscribe = subscribe.bind(object);
-    object.once = once.bind(object);
-    object.emit = emit.bind(object);
+    object.subscribe = subscribe;
+    object.once = once;
+    object.emit = emit;
     return object;
 }
 
-BindEventEmitter.EVENTS = EVENTS;
+CopyEventEmitter.EVENTS = EVENTS;
 
-export default BindEventEmitter;
+export default CopyEventEmitter;
