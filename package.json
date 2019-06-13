@@ -5,8 +5,9 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "start": "node --experimental-modules --es-module-specifier-resolution=node ./src/index.js",
-    "test": "node --experimental-modules --es-module-specifier-resolution=node ./src/index.test.js"
+    "start": "tap --watch",
+    "dev": "node --experimental-modules --es-module-specifier-resolution=node ./dev.js",
+    "test": "tap"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
   },
   "homepage": "https://github.com/gartz/next-emitter#readme",
   "devDependencies": {
+    "node-watch": "^0.6.2",
     "tap": "^14.2.2"
   }
 }
