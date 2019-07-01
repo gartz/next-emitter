@@ -13,7 +13,7 @@ function subscribe (name, callback) {
   eventsMap.add(callback);
   return () => {
     eventsMap.get(name).delete(callback);
-  }
+  };
 }
 
 function once (name, callback) {
