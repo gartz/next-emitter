@@ -6,10 +6,12 @@
 // };
 
 const EVENTS = Symbol('EVENTS');
+const ONCE_EVENTS = Symbol('ONCE_EVENTS');
 
 export class EventEmitter {
   constructor () {
     this[EVENTS] = new Map();
+    this[ONCE_EVENTS] = new WeakMap();
   }
 
   subscribe (name, callback) {
@@ -21,10 +23,14 @@ export class EventEmitter {
 
   unsubscribe (name, callback) {
     if (this[EVENTS].has(name)) {
+      const callbackQueue = this[EVENTS].get(name);
       if (typeof callback === 'undefined') {
-        this[EVENTS].get(name).clear();
+        callbackQueue.clear();
       } else {
-        this[EVENTS].get(name).delete(callback);
+        const hasDeleted = callbackQueue.delete(callback);
+        if (!hasDeleted) {
+          callbackQueue.delete(this[ONCE_EVENTS].get(callback));
+        }
       }
     }
   }
@@ -34,6 +40,7 @@ export class EventEmitter {
       this.unsubscribe(name, onceCallback);
       callback(...args);
     };
+    this[ONCE_EVENTS].set(callback, onceCallback);
     this.subscribe(name, onceCallback);
   }
 

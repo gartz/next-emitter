@@ -106,6 +106,95 @@ t.test('Should execute callbacks only the event in the emit', t => {
   t.end();
 });
 
+t.test('Should method once', t => {
+  t.test('execute callback once', t => {
+    const ee = t.context.ee;
+
+    let callbackExecCount = 0;
+    const callback = () => {
+      callbackExecCount++;
+    };
+
+    ee.once('test', callback);
+    ee.emit('test');
+    t.assert(callbackExecCount === 1);
+    ee.emit('test');
+    t.assert(callbackExecCount === 1);
+    t.end();
+  });
+
+  t.test('when event name has not emit, not be called', t => {
+    const ee = t.context.ee;
+
+    let callbackExecCount = 0;
+    const callback = () => {
+      callbackExecCount++;
+    };
+
+    ee.once('test', callback);
+    ee.emit('another_test');
+    t.assert(callbackExecCount === 0);
+    t.end();
+  });
+
+  if (config.hasMethodUnsubscribe) {
+    t.test('when unsubscribe the event, not be called', t => {
+      const ee = t.context.ee;
+
+      let callbackExecCount = 0;
+      const callback = () => {
+        callbackExecCount++;
+      };
+
+      ee.once('test', callback);
+      ee.unsubscribe('test', callback);
+      ee.emit('test');
+      t.assert(callbackExecCount === 0);
+      t.end();
+    });
+
+    t.test('when unsubscribe all callbacks, not be called', t => {
+      const ee = t.context.ee;
+
+      let callbackExecCount = 0;
+      const callback = () => {
+        callbackExecCount++;
+      };
+
+      ee.once('test', callback);
+      ee.unsubscribe('test');
+      ee.emit('test');
+      t.assert(callbackExecCount === 0);
+      t.end();
+    });
+
+    t.test('when unsubscribe another event, call the original event', t => {
+      const ee = t.context.ee;
+
+      let callbackToBeCalled = false;
+      const callback = () => {
+        callbackToBeCalled = true;
+      };
+
+      let callbackToNotBeCalled = false;
+      const callbackNotBeCalled = () => {
+        callbackToNotBeCalled = true;
+      };
+
+      ee.once('test_to_be_called', callback);
+      ee.once('test_to_not_be_called', callbackNotBeCalled);
+      ee.unsubscribe('test_to_not_be_called');
+      ee.emit('test_to_be_called');
+      ee.emit('test_to_not_be_called');
+      t.assert(callbackToBeCalled);
+      t.assertNot(callbackToNotBeCalled);
+      t.end();
+    });
+  }
+
+  t.end();
+});
+
 if (config.hasMethodUnsubscribe) {
   t.test('Should method unsubscribe', t => {
     t.test('when pass name and callback, unsubscribe the callback', t => {
