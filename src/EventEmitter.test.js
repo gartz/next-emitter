@@ -88,6 +88,24 @@ t.test('Should execute callbacks in order', t => {
   t.end();
 });
 
+t.test('Should execute callbacks only the event in the emit', t => {
+  const ee = t.context.ee;
+  let notToCall = false;
+  let toCall = false;
+
+  ee.subscribe('test_not_to_call', () => {
+    notToCall = true;
+  });
+  ee.subscribe('test_to_call', () => {
+    toCall = true;
+  });
+
+  ee.emit('test_to_call');
+  t.assertNot(notToCall);
+  t.assert(toCall);
+  t.end();
+});
+
 if (config.hasMethodUnsubscribe) {
   t.test('Should method unsubscribe', t => {
     t.test('when pass name and callback, unsubscribe the callback', t => {
