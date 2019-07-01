@@ -13,7 +13,7 @@ t.test('Should be a class', t => {
   t.end()
 });
 
-function createInstance() {
+function createInstance () {
   return new EventEmitter();
 }
 
@@ -53,9 +53,9 @@ t.test('Subscribe and emit a event', t => {
   });
   ee.emit('test');
   t.assert(callbackCalled);
-  t.end();  
+  t.end();
 });
-    
+
 t.test('Should pass args to the event callback', t => {
   const ee = t.context.ee;
   const arg0 = true;
@@ -88,10 +88,8 @@ t.test('Should execute callbacks in order', t => {
   t.end();
 });
 
-
 if (config.hasMethodUnsubscribe) {
   t.test('Should method unsubscribe', t => {
-
     t.test('when pass name and callback, unsubscribe the callback', t => {
       const ee = t.context.ee;
 
@@ -160,9 +158,7 @@ t.type(EventEmitter, 'function', 'Should be a function');
 
 t.type(EventEmitter.constructor, 'function');
 
-
 // tap.test('is true', t => {
 //   t.equal('foo', 'bar');
 //   t.end();
 // });
-
