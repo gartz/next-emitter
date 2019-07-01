@@ -1,8 +1,10 @@
-# Javascript Node CircleCI 2.0 configuration file
+# Javascript Node CircleCI configuration file
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
-version: 2
+version: 2.1
+orbs:
+  codecov: codecov/codecov@1.0.5
 jobs:
   build:
     docker:
@@ -34,5 +36,24 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: npm test
-      
+      - run:
+          name: "JavaScript Linter"
+          command: |
+            mkdir -p reports/junit 
+            npm run report-lint
+      - run:
+          name: "JavaScript Tests"
+          command: |
+            mkdir -p reports/junit 
+            npm run report-junit
+      - run:
+          name: "JavaScript Coverage"
+          command: |
+            mkdir -p reports/junit 
+            npm run report-coverage
+      - codecov/upload:
+          file: reports/lcov.info
+      - store_test_results:
+          path: reports/junit
+      - store_artifacts:
+          path: reports
