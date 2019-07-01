@@ -15,8 +15,8 @@ module.exports = {
     'sourceType': 'module'
   },
   'rules': {
-    'semi': 'off',
-    'standard/no-callback-literal': ['off', ['cb', 'callback']],
-    'comma-dangle': ['error', 'always']
+    'semi': [2, 'always'],
+    'standard/no-callback-literal': [0, ['cb', 'callback']],
+    'comma-dangle': [2, 'always']
   }
 }
