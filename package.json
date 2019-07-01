@@ -9,7 +9,11 @@
     "lint": "eslint **/**.js",
     "fix": "npm run lint -- --fix",
     "dev": "node --experimental-modules --es-module-specifier-resolution=node ./dev.js",
-    "test": "npm run lint && tap"
+    "report-junit": "tap && tap --reporter=xunit --no-coverage > reports/junit/js-test-results.xml",
+    "report-coverage": "tap && tap --reporter=silent --coverage-report=text-lcov > reports/lcov.info",
+    "report-lint": "npm run lint -- --format junit -o reports/junit/js-lint-results.xml",
+    "tap": "tap",
+    "test": "npm run lint && npm run tap"
   },
   "repository": {
     "type": "git",
@@ -36,6 +40,6 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "node-watch": "^0.6.2",
-    "tap": "^14.2.2"
+    "tap": "^14.3.1"
   }
 }
