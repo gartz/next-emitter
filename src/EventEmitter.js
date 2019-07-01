@@ -21,7 +21,11 @@ export class EventEmitter {
 
   unsubscribe (name, callback) {
     if (this[EVENTS].has(name)) {
-      this[EVENTS].get(name).delete(callback);
+      if (typeof callback === 'undefined') {
+        this[EVENTS].get(name).clear();
+      } else {
+        this[EVENTS].get(name).delete(callback);
+      }
     }
   }
 
@@ -29,7 +33,7 @@ export class EventEmitter {
     const onceCallback = (...args) => {
       this.unsubscribe(name, onceCallback);
       callback(...args);
-    }
+    };
     this.subscribe(name, onceCallback);
   }
 

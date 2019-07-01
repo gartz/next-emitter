@@ -10,7 +10,7 @@ const config = {
 t.test('Should be a class', t => {
   const ee = new EventEmitter();
   t.assert(ee instanceof EventEmitter);
-  t.end()
+  t.end();
 });
 
 function createInstance () {
@@ -157,8 +157,3 @@ if (config.hasMethodUnsubscribe) {
 t.type(EventEmitter, 'function', 'Should be a function');
 
 t.type(EventEmitter.constructor, 'function');
-
-// tap.test('is true', t => {
-//   t.equal('foo', 'bar');
-//   t.end();
-// });
