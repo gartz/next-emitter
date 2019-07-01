@@ -6,9 +6,10 @@
   "type": "module",
   "scripts": {
     "start": "tap --watch",
-    "lint": "eslint **/**.js --fix",
+    "lint": "eslint **/**.js",
+    "fix": "npm run lint -- --fix",
     "dev": "node --experimental-modules --es-module-specifier-resolution=node ./dev.js",
-    "test": "tap"
+    "test": "npm run lint && tap"
   },
   "repository": {
     "type": "git",
