@@ -3,9 +3,9 @@ import PrototypeEventEmitter from './PrototypeEventEmitter';
 import CopyEventEmitter from './CopyEventEmitter';
 import WeakEventEmitter from './WeakEventEmitter';
 
-export EventEmitter;
-export PrototypeEventEmitter;
-export CopyEventEmitter;
-export WeakEventEmitter;
+export const EE = EventEmitter;
+export const PEE = PrototypeEventEmitter;
+export const CEE = CopyEventEmitter;
+export const WEE = WeakEventEmitter;
 
-export default EventEmitterEventEmitter;
+export default EE;

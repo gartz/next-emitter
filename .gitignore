@@ -20,4 +20,4 @@ chrome-user-data
 .vscode
 *.swp
 *.swo
-
+.nyc_output
