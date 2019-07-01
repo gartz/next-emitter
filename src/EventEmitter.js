@@ -52,5 +52,6 @@ export class EventEmitter {
 }
 
 EventEmitter.EVENTS = EVENTS;
+EventEmitter.ONCE_EVENTS = ONCE_EVENTS;
 
 export default EventEmitter;
