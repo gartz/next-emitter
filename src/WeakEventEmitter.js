@@ -24,7 +24,7 @@ function subscribe (name, callback) {
   eventsMap.add(callback);
   return () => {
     eventsMap.get(name).delete(callback);
-  }
+  };
 }
 
 function once (name, callback) {
@@ -33,7 +33,7 @@ function once (name, callback) {
     unsubscribe();
     callback(...args);
   };
-  unsubscribe = this.subscribe(name, onceCallback)
+  unsubscribe = this.subscribe(name, onceCallback);
   return unsubscribe;
 }
 
