@@ -4,6 +4,7 @@
 // Object.create(PrototypeEventEmitter, {});
 
 const weakMap = new WeakMap();
+const onceWeakMap = new WeakMap();
 
 function getOrSetEventsMap (instance) {
   if (weakMap.has(instance)) {
@@ -18,7 +19,7 @@ const PrototypeEventEmitter = {
   subscribe: function (name, callback) {
     const eventsMap = getOrSetEventsMap(this);
 
-    if (!eventsMap.has(this)) {
+    if (!eventsMap.has(name)) {
       eventsMap.set(name, new Set());
     }
     eventsMap.get(name).add(callback);
@@ -28,7 +29,12 @@ const PrototypeEventEmitter = {
     const eventsMap = getOrSetEventsMap(this);
 
     if (eventsMap.has(name)) {
-      eventsMap.get(name).delete(callback);
+      const eventsQueue = eventsMap.get(name);
+      if (typeof callback === 'undefined') {
+        eventsQueue.clear();
+      } else {
+        eventsQueue.delete(callback);
+      }
     }
   },
 

@@ -1,0 +1,7 @@
+branches: 100
+check-coverage: true
+files: ["src/**.test.js"]
+functions: 100
+lines: 100
+nyc-arg: ["--exclude=src/dev", "--include=src/**.js"]
+

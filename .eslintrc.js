@@ -17,6 +17,7 @@ module.exports = {
   'rules': {
     'semi': [2, 'always'],
     'standard/no-callback-literal': [0, ['cb', 'callback']],
-    'comma-dangle': [2, 'always']
+    'comma-dangle': [2, 'always'],
+    'standard/object-curly-even-spacing': 0
   }
 }
